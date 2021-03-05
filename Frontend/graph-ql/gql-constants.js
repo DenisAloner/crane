@@ -1,0 +1,5 @@
+export const $ARGUMENTS = Symbol('Arguments')
+export const TYPES = Symbol('Types')
+export const _ = Symbol('Placeholder')
+export const DELETE = Symbol('Delete')
+export const STORED = Symbol('Stored')

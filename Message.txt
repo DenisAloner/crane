@@ -1,0 +1,202 @@
+1 - MESSAGE TYPE: CHANGE BYPASS
+2 - MESSAGE TYPE: CHANGE MODE
+4 - MESSAGE TYPE: RESET
+5 - MESSAGE TYPE: RELEASE_SAFETY_LOCK
+10 - MESSAGE TYPE: RUN TASK
+11 - MESSAGE TYPE: CANCEL
+12 - MESSAGE TYPE: REQUEST COMPLETED
+
+1 - OUTPUT MESSAGE TYPE: CURRENT DATA
+2 - OUTPUT MESSAGE TYPE: ERRORS WARNINGS
+3 - OUTPUT MESSAGE TYPE: SERVICE
+4 - OUTPUT MESSAGE TYPE: AXIS SERVICE
+
+1 - ACTION TYPE: READY ACCEPT OPERATION
+2 - ACTION TYPE: WRITING WEIGHT TO DB
+3 - ACTION TYPE: OPERATOR CONFIRMATION
+4 - ACTION TYPE: DONE, WRITING TO DB
+5 - ACTION TYPE: START WORK WITH CELL
+6 - ACTION TYPE: FINISH WORK WITH CELL
+
+1 - OPERATION WORKZONE: DESK_TO_CELL
+2 - OPERATION WORKZONE: CELL_TO_DESK
+3 - OPERATION WORKZONE: CELL_TO_CELL
+4 - OPERATION WORKZONE: CELL_TO_DESK_TO_CELL
+5 - OPERATION WORKZONE: CELL_TO_DESK_TO_CELL_WITHOUT_CONFIRMATION
+10 - OPERATION WORKZONE: COORDINATE CHECK
+11 - OPERATION WORKZONE: COORDINATE DETECTION
+18 - OPERATION WORKZONE: CONVEYOR TO DESK
+19 - OPERATION WORKZONE: CONVEYOR TO STACKER
+20 - OPERATION WORKZONE: SET POSITION ENCODER X
+21 - OPERATION WORKZONE: SET POSITION ENCODER Y
+22 - OPERATION WORKZONE: SET POSITION ENCODER Z
+23 - OPERATION WORKZONE: SET HOME X
+24 - OPERATION WORKZONE: SET HOME Y
+25 - OPERATION WORKZONE: SET HOME Z
+
+Format:
+16#02, 16#05, 16#41:		Integer 8, Unsigned 8, Byte
+16#03, 16#06, 16#42:		Integer 16, Unsigned 16, Word
+16#04, 16#07, 16#08, 16#43:	Integer 32, Unsigned 32, Float, DWord
+16#40:				Zero
+16#44:				Error
+
+
+
+
+
+Header:
+	Workzone	LInt
+	Len		Int
+	Type		Int
+	MessageID	LInt
+
+Data to PLC:
+	MESSAGE TYPE: CHANGE BYPASS
+		Object		Byte(%0 - Штабелер, %1 - Конвейер)
+
+	MESSAGE TYPE: CHANGE MODE
+		Mode		Int
+
+	MESSAGE TYPE: RUN TASK	
+		OperationId	LInt
+		OperationType	Int
+		Weight		Real
+		Addresses	Array[0..2] of Struct
+			ID	LInt
+			Type	Int
+			X	DInt
+			Y	DInt
+			Z	DInt
+
+Data from PLC:
+	LifeBit(Byte) + ==>
+
+	OUTPUT MESSAGE TYPE: CURRENT DATA
+		Status		Word
+		Mode		Byte
+		Position X	DInt
+		Position Y	DInt
+		Position Z	DInt
+		ActionType	Int
+		OperationID	LInt
+		CellNumber	Int
+		OperationStep	Int
+		Weight		Real
+
+	OUTPUT MESSAGE TYPE: ERRORS WARNINGS
+	
+		Master errors			    Array[32] of Bool
+		Stacker errors			    Array[64] of Bool 
+		Stacker Axis X errors		Array[48] of Bool 
+		Stacker Axis Y errors		Array[48] of Bool 
+		Stacker Axis Z errors		Array[48] of Bool 
+		Stacker Encoder X errors	Array[16] of Bool 
+		Stacker Encoder Y errors	Array[16] of Bool 
+		Stacker Encoder Z errors	Array[16] of Bool
+		Conveyor errors			    Array[32] of Bool 
+		Scales errors			    Array[16] of Bool 
+		Stacker FC X errors		    Array[8] of UInt  
+		Stacker FC Y errors		    Array[8] of UInt  
+		Stacker FC Z errors		    Array[8] of UInt  
+		Conveyor FC errors		    Array[8] of UInt  
+		
+		Master warnings			    Array[16] of Bool 
+		Stacker warnings		    Array[16] of Bool 
+		Stacker Axis X warnings		Array[8] of Bool 
+		Stacker Axis Y warnings		Array[8] of Bool 
+		Stacker Axis Z warnings		Array[8] of Bool 
+		Stacker Encoder X warnings	Array[8] of Bool 
+		Stacker Encoder Y warnings	Array[8] of Bool 
+		Stacker Encoder Z warnings	Array[8] of Bool
+		Conveyor warnings		    Array[16] of Bool    
+		Stacker FC X warnings		Array[8] of UInt 
+		Stacker FC Y warnings		Array[8] of UInt  
+		Stacker FC Z warnings		Array[8] of UInt  
+		Conveyor FC warnings		Array[8] of UInt  
+
+
+	OUTPUT MESSAGE TYPE: SERVICE
+		CycleTime ms Average		Int
+		CycleTime ms Max		Int
+		CycleTime ms Min		Int
+		CycleTime Servo ms Average	Int
+		CycleTime Servo ms Max		Int
+		CycleTime Servo ms Min		Int
+		Times_Hours Total 		UDInt
+		Times_Hours WorkedOperations	UDInt
+		Times_Hours WorkedAutoMode	UDInt
+		Times_Hours WorkedServiceMode	UDInt
+		Times_Hours WorkedManualMode	UDInt
+		TaskLaunches Total		UDInt
+		TaskLaunches Successful		UDInt
+		TaskLaunches Cancelled		UDInt
+		Stacker FC X Enabled_Hour	UDInt
+		Stacker FC X Starting		UDInt
+		Stacker FC Y Enabled_Hour	UDInt
+		Stacker FC Y Starting		UDInt
+		Stacker FC Z Enabled_Hour	UDInt
+		Stacker FC Z Starting		UDInt
+		Stacker Encoder X DistanceTraveled_Meter	UDInt
+		Stacker Encoder X Date_ActivatePresetValue	Date_And_Time
+		Stacker Encoder Y DistanceTraveled_Meter	UDInt
+		Stacker Encoder Y Date_ActivatePresetValue	Date_And_Time
+		Stacker Encoder Z DistanceTraveled_Meter	UDInt
+		Stacker Encoder Z Date_ActivatePresetValue	Date_And_Time
+		Stacker Axis X Date_SetHome	Date_And_Time
+		Stacker Axis Y Date_SetHome	Date_And_Time
+		Stacker Axis Z Date_SetHome	Date_And_Time
+		Stacker Conveyor Z Enabled_Hour	UDInt
+		Stacker Conveyor Z Starting	UDInt
+
+	OUTPUT MESSAGE TYPE: AXIS SERVICE
+		Axis number		Byte
+		Status			Word
+		FC ControlWord		Word
+		FC StatusWord		Word
+		FollowingError		Real
+		Speed_rpm		Real
+		Speed_sp		Real
+		Velocity_MmMin		Real
+		Velocity_sp		Real
+		Encoder type		Byte
+		ReadQuality		USint
+		Parameters FC		Array[0..31] of Struct
+						Number	UInt
+						Format	Byte
+						Value	DWord
+
+Status - Current data
+	%X0 - Error
+	%X1 - Warning
+	%X2 - Reset
+	%X3 - Busy
+	%X4 - Canceled
+	%X5 - Reserv_5
+	%X6 - Reserv_6
+	%X7 - Reserv_7
+	%X8 - Reserv_8
+	%X9 - Reserv_9
+	%X10 - Reserv_10
+	%X11 - Reserv_11
+	%X12 - Reserv_12
+	%X13 - Reserv_13
+	%X14 - Reserv_14
+	%X15 - Reserv_15
+Status - Axis service
+	%X0 - FC Error
+	%X1 - FC Warning
+	%X2 - FC CommunicationOk
+	%X3 - Encoder Error
+	%X4 - Encoder Warning
+	%X5 - Encoder CommunicationOk Homing done
+	%X6 - Homing done
+	%X7 - In position
+	%X8 - Standstill
+	%X9 - Enabled
+	%X10 - Reserv_10
+	%X11 - Reserv_11
+	%X12 - Reserv_12
+	%X13 - Reserv_13
+	%X14 - Reserv_14
+	%X15 - Reserv_15

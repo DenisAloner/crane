@@ -1,0 +1,2 @@
+# Флаги для Chrome
+--enable-features=openvr --disable-features=XRSandbox --force-webxr-runtime=openvr --enable-experimental-web-platform-features

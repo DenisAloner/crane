@@ -1,0 +1,17 @@
+в cmd:
+mkcert -install
+mkcert -pkcs12 192.168.1.60
+
+добавить через mmc
+
+в powershell:
+net
+http
+add sslcert ipport=0.0.0.0:6969 certhash=7b2c0f048f0eb549de061709727394d1552c7495 appid="{9A19103F-16F7-4668-BE54-9A1E7A4F7556}"
+
+
+mkcert -key-file server.key -cert-file server.crt 10.42.0.20
+openssl pkcs12 -export -out certificate.pfx -inkey server.key -in server.crt
+
+
+sudo openssl pkcs12 -export -out certificate.pfx -inkey /etc/letsencrypt/live/theapo.online/privkey.pem -in /etc/letsencrypt/live/theapo.online/fullchain.pem

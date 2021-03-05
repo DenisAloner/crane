@@ -1,0 +1,62 @@
+:root {
+  --color: red;
+}
+
+.firstColor {
+  fill: red;
+}
+
+.svg-plain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 43'><path d='M 55.584673,43.175632 36.75281,22.967243 0,43.175632 40.42403,0 59.71135,20.208389 96,0 Z' /></svg>");
+}
+
+@font-face {
+  font-family: mipgost;
+  src: url('/resources/fonts/LeagueGothicCyrillic.ttf');
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: mipgost;
+  overflow: hidden;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: mipgost;
+}
+
+#root {
+  perspective-origin: 100% 100%;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--color);
+  font-size: 22px;
+}
+
+#filler{
+  width: 100%;
+  height:25%;
+}
+
+#d3 {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto auto auto auto;
+}
+
+#d3>div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

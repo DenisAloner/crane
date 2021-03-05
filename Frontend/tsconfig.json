@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "removeComments": true,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "plugins": []
+  },
+  "exclude": ["build/*"]
+}

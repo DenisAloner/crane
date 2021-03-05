@@ -1,0 +1,47 @@
+{
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "prettifySymbolsMode.substitutions": [
+    {
+      "language": [
+        "javascript",
+        {
+          "pattern": "**/*.js"
+        }
+      ],
+      "substitutions": [
+        {
+          "pre": "\\b",
+          "ugly": "fn",
+          "pretty": "λ",
+          "style": {
+            "color": "orange"
+          }
+        },
+        {
+          "pre": "\\b[a-zA-Z]+",
+          "ugly": "1(?=\\b)",
+          "pretty": "₁"
+        },
+        {
+          "pre": "\\b[a-zA-Z]+",
+          "ugly": "2(?=\\b)",
+          "pretty": "₂"
+        },
+        {
+          "pre": "\\b[a-zA-Z]+",
+          "ugly": "3(?=\\b)",
+          "pretty": "₃"
+        }
+      ]
+    }
+  ],
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "eslint.nodePath": ".yarn/sdks",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

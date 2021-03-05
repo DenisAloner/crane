@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="icon" type="image/svg+xml" href="resources/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="resources/favicon.png">
+    <link rel="stylesheet" href="/resources/css/spa.css">
+    <link rel="stylesheet" href="/resources/css/modal.css">
+    <link rel="stylesheet" href="/resources/css/splitted-area.css">
+    <link rel="stylesheet" href="/resources/css/button.css">
+    <link rel="stylesheet" href="/resources/css/cellEditors.css">
+    <link rel="stylesheet" href="/resources/css/grid.css">
+    <link rel="stylesheet" href="/resources/css/workspace.css">
+    <script type="module" async="true" src="/build/index.js"></script>
+    <style>
+        @font-face {
+            font-family: "mipgost";
+            src: url("/resources/fonts/LeagueGothicCyrillic.ttf");
+        }
+        
+        *:focus {
+            outline: none;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #measureText {
+            position: absolute;
+            visibility: hidden;
+            height: auto;
+            width: auto;
+            white-space: nowrap;
+        }
+
+        html {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: mipgost;
+            overflow: hidden;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: inherit;
+            position: fixed;
+        }
+
+        #SPA {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="SPA"></div>
+    <div id="measureText"></div>
+</body>
+
+</html>

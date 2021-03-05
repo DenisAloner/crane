@@ -1,0 +1,131 @@
+/* :root {
+    --first-color: #1D2B3A;
+    --second-color: #FFDB99;
+    --third-color-rgb: 142, 131, 106;
+} */
+
+:root {
+    --first-color-rgb: 0, 64, 128;
+    --second-color-rgb: 255, 255, 255;
+    --third-color-rgb: 245, 245, 246;
+    --first-color: rgb(var(--first-color-rgb));
+    --second-color: rgb(var(--second-color-rgb));
+    --third-color: rgb(var(--third-color-rgb));
+    --selection-color: rgb(232, 240, 254);
+    --disabled-color: rgb(225, 226, 225);
+    --drop-shadow-color: rgba(0, 0, 0, 0.25);
+    --drop-shadow-2dp-left: drop-shadow(-1px 0px 2px var(--drop-shadow-color));
+    --drop-shadow-2dp-bottom: drop-shadow(0px 1px 2px var(--drop-shadow-color));
+    --box-shadow-1dp-right: -2px 0px 4px var(--first-color);
+    --box-shadow-1dp-left: 2px 0px 4px var(--first-color);
+    --box-shadow-1dp-bottom: 0px -2px 4px var(--first-color);
+    --box-shadow-2dp-bottom: 0px -4px 8px var(--first-color);
+}
+
+.ripple {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: rippleEffect .28s 1 ease-in;
+    opacity: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+@keyframes rippleEffect {
+    0% {
+        transform: scale(1);
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: scale(64);
+        opacity: 0;
+    }
+}
+
+.background-first-color {
+    background-color: var(--first-color);
+}
+
+.background-second-color {
+    background-color: var(--second-color);
+}
+
+.firstColor {
+    fill: var(--first-color);
+}
+
+.secondColor {
+    fill: var(--second-color);
+}
+
+.box-shadow-1dp-bottom {
+    box-shadow: var(--box-shadow-1dp-bottom);
+}
+
+.shadowRight2dp {
+    box-shadow: var(--box-shadow-1dp-right);
+}
+
+.shadowLeft2dp {
+    box-shadow: var(--box-shadow-1dp-left);
+}
+
+.component {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+.flexWrapper {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.componentWrap {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+}
+
+.buttonComponent {
+    width: 1em;
+    height: 1em;
+    background-color: var(--second-color);
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+    box-sizing: border-box;
+}
+
+.buttonComponent>div {
+    width: calc(1em - 4px);
+    height: calc(1em - 4px);
+    margin: 2px;
+    box-sizing: border-box;
+    border: 1px dashed var(--first-color);
+    border-radius: inherit;
+}
+
+@keyframes autofill {
+    to {
+        color: inherit;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    animation-name: autofill;
+    animation-fill-mode: both;
+}
